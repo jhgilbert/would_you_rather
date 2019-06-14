@@ -1,3 +1,6 @@
-export default function toyReducer (state={}, action) {
-  return state
-}
+import { combineReducers } from 'redux'
+import authedUser from './authedUser'
+
+export default combineReducers({
+  authedUser,
+})
