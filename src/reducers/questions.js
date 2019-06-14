@@ -1,18 +1,24 @@
-import { ADD_QUESTION } from '../actions/questions'
-
-// steal the ID functionality from _DATA.js for now,
-// so we can delay read/writes to the API until later
-function generateUID () {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
-}
+import { ADD_QUESTION, ADD_VOTE_TO_QUESTION } from '../actions/questions'
 
 export default function questions (state = {}, action) {
   switch(action.type) {
     case ADD_QUESTION :
-      const id = generateUID()
+      // hard-coded ID to allow for crude testing
+      // of API-less initial state setup :)
+      const id = 'xyz'
       return {
         ...state,
         [id]: action.question
+      }
+    // note that there is no validation yet,
+    // a user can currently vote multiple times
+    // for the same question
+    case ADD_VOTE_TO_QUESTION :
+      const question = state[action.questionId]
+      question.options[action.option].push("FAKE USER ID")
+      return {
+        ...state,
+        [action.questionId]: question
       }
     default :
       return state
