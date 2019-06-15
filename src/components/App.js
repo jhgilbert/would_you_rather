@@ -40,6 +40,7 @@ class App extends Component {
       <div className="App">
         This is the app component.
         <NewQuestion />
+        <hr />
         <QuestionList />
       </div>
     )

@@ -3,10 +3,21 @@ import { connect } from 'react-redux'
 
 class QuestionPreview extends Component {
   render() {
+    const { question } = this.props
+
     return (
-      <div>This is a summary of one question.</div>
+      <div>{JSON.stringify(question)}</div>
     )
   }
 }
 
-export default QuestionPreview
+// skipping the authed user for now
+function mapStateToProps({ questions }, { id }) {
+  const question = questions[id]
+
+  return {
+    question
+  }
+}
+
+export default connect(mapStateToProps)(QuestionPreview)

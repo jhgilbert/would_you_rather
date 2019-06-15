@@ -6,10 +6,22 @@ class QuestionList extends Component {
   render() {
     return (
       <ul>
-        <li><QuestionPreview /></li>
+        {this.props.questionIds.map((id) => (
+          <li key={id}>
+            <QuestionPreview id={id} />
+          </li>
+        ))}
       </ul>
     )
   }
 }
 
-export default QuestionList
+// skipping authed user for now
+function mapStateToProps( { questions } ) {
+  return {
+    questionIds: Object.keys(questions)
+      .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+  }
+}
+
+export default connect(mapStateToProps)(QuestionList)
