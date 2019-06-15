@@ -6,7 +6,18 @@ class QuestionPreview extends Component {
     const { question } = this.props
 
     return (
-      <div>{JSON.stringify(question)}</div>
+      <div style={{border: '1px solid black', padding: '10px'}}>
+        <div>
+          <p>Option 1 ({question.optionOne.votes.length} votes): <br />
+          {question.optionOne.text}
+          </p>
+        </div>
+        <div>
+          <p>Option 2 ({question.optionTwo.votes.length} votes): <br />
+          {question.optionTwo.text}
+          </p>
+        </div>
+      </div>
     )
   }
 }
