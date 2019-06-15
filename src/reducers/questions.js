@@ -5,6 +5,25 @@ function generateUID () {
 }
 
 export default function questions (state = {}, action) {
+  if (!state.keys) {
+    state = {
+      'testQuestion1': {
+        id: 'testQuestion1',
+        optionOne: { text: 'a', votes: [] },
+        optionTwo: { text: 'b', votes: [] },
+        author: 'testAuthor1',
+        timestamp: Date.now(),
+      },
+      'testQuestion2': {
+        id: 'testQuestion2',
+        optionOne: { text: 'x', votes: [] },
+        optionTwo: { text: 'y', votes: [] },
+        author: 'testAuthor2',
+        timestamp: Date.now(),
+      }
+    }
+  }
+
   switch(action.type) {
     case ADD_QUESTION :
       const newQuestion = action.question
