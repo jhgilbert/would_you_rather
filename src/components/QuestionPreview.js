@@ -17,6 +17,7 @@ class QuestionPreview extends Component {
           {question.optionTwo.text}
           </p>
         </div>
+        <p><em>by {question.author}</em></p>
       </div>
     )
   }

@@ -10,7 +10,7 @@ export default function questions (state = {}, action) {
       const newQuestion = action.question
       newQuestion.id = generateUID()
       newQuestion.timestamp = Date.now()
-      newQuestion.author = "author id goes here"
+      newQuestion.author = action.author
       newQuestion.optionOne.votes = []
       newQuestion.optionTwo.votes = []
       return {

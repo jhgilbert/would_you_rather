@@ -1,6 +1,8 @@
 import { SET_AUTHED_USER } from '../actions/authedUser'
 
-export default function authedUser (state = null, action) {
+// default user is set in here with maximum laziness
+// for testing purposes
+export default function authedUser (state = 'jen', action) {
   switch (action.type) {
     case SET_AUTHED_USER :
       return action.id

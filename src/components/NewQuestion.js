@@ -35,7 +35,7 @@ class NewQuestion extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
 
-    this.props.dispatch(handleAddQuestion(this.state))
+    this.props.dispatch(handleAddQuestion(this.state, this.props.authedUser))
 
     this.setState(() => ({
       optionOne: {

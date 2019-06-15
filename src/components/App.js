@@ -27,15 +27,13 @@ class App extends Component {
         optionTwo: { text: lorem.generateSentences(1) },
       }
 
-      this.props.dispatch(addQuestion(question))
+      this.props.dispatch(addQuestion(question, this.props.authedUser))
     }
   }
 
   render() {
     // make a bunch of fake questions!!!! muahaahaa
     this.populateQuestions()
-
-    this.props.dispatch(setAuthedUser(1))
 
     return (
       <div className="App">
@@ -49,8 +47,10 @@ class App extends Component {
   }
 }
 
-function mapStateToProps () {
-  return {}
+function mapStateToProps ( { authedUser } ) {
+  return {
+    authedUser
+  }
 }
 
 export default connect(mapStateToProps)(App);
