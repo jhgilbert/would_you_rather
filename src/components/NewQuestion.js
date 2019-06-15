@@ -52,6 +52,7 @@ class NewQuestion extends Component {
 
     return (
       <div>
+        <p>authedUser is {this.props.authedUser}</p>
         <h1>Create New Question</h1>
         <p>Option 1:</p>
         <form>
@@ -75,4 +76,10 @@ class NewQuestion extends Component {
   }
 }
 
-export default connect()(NewQuestion)
+function mapStateToProps({ authedUser }) {
+  return {
+    authedUser
+  }
+}
+
+export default connect(mapStateToProps)(NewQuestion)
