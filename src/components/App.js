@@ -4,9 +4,36 @@ import { setAuthedUser } from '../actions/authedUser'
 import { addQuestion, addVoteToQuestion } from '../actions/questions'
 import NewQuestion from './NewQuestion'
 import QuestionList from './QuestionList'
+import { LoremIpsum } from 'lorem-ipsum'
 
 class App extends Component {
+  // temporary function for testing purposes
+  populateQuestions() {
+    const lorem = new LoremIpsum({
+      sentencesPerParagraph: {
+        max: 8,
+        min: 4
+      },
+      wordsPerSentence: {
+        max: 8,
+        min: 4
+      }
+    });
+
+    for (var i = 0; i < 10; i++) {
+      const question = {
+        optionOne: { text: lorem.generateSentences(1) },
+        optionTwo: { text: lorem.generateSentences(1) },
+      }
+
+      this.props.dispatch(addQuestion(question))
+    }
+  }
+
   render() {
+    // make a bunch of fake questions!!!! muahaahaa
+    this.populateQuestions()
+
     this.props.dispatch(setAuthedUser(1))
 
     return (
