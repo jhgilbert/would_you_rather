@@ -15,7 +15,11 @@ export default function questions (state = {}, action) {
     // for the same question
     case ADD_VOTE_TO_QUESTION :
       const question = state[action.questionId]
-      question.options[action.option].push("FAKE USER ID")
+      if (question.optionOne.text === action.option) {
+        question.optionOne.votes.push('user id goes here')
+      } else {
+        question.optionTwo.votes.push('user id goes here')
+      }
       return {
         ...state,
         [action.questionId]: question

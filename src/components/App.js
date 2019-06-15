@@ -7,16 +7,22 @@ class App extends Component {
   render() {
     this.props.dispatch(setAuthedUser(1))
     const question = {
-      options: {
-        "Climb a tree": [],
-        "Run a race": []
+        author: 'sarahedo',
+        timestamp: 1467166872634,
+        optionOne: {
+          votes: ['sarahedo'],
+          text: 'have horrible short term memory',
+        },
+        optionTwo: {
+          votes: [],
+          text: 'have horrible long term memory'
+        }
       }
-    }
     this.props.dispatch(addQuestion(question))
-    this.props.dispatch(addVoteToQuestion('xyz', 'Climb a tree'))
-    this.props.dispatch(addVoteToQuestion('xyz', 'Climb a tree'))
-    this.props.dispatch(addVoteToQuestion('xyz', 'Climb a tree'))
-    this.props.dispatch(addVoteToQuestion('xyz', 'Run a race'))
+    this.props.dispatch(addVoteToQuestion('xyz', 'have horrible short term memory'))
+    this.props.dispatch(addVoteToQuestion('xyz', 'have horrible short term memory'))
+    this.props.dispatch(addVoteToQuestion('xyz', 'have horrible short term memory'))
+    this.props.dispatch(addVoteToQuestion('xyz', 'have horrible long term memory'))
 
     return (
       <div className="App">
