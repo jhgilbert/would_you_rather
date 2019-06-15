@@ -7,7 +7,7 @@ class QuestionList extends Component {
     return (
       <ul>
         {this.props.questionIds.map((id) => (
-          <li key={id}>
+          <li key={id} onClick={() => this.props.handleQuestionSelect(id)}>
             <QuestionPreview id={id} />
           </li>
         ))}
