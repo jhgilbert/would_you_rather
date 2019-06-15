@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 import { addQuestion, addVoteToQuestion } from '../actions/questions'
 import NewQuestion from './NewQuestion'
+import QuestionList from './QuestionList'
 
 class App extends Component {
   render() {
@@ -12,6 +13,7 @@ class App extends Component {
       <div className="App">
         This is the app component.
         <NewQuestion />
+        <QuestionList />
       </div>
     )
   }
