@@ -5,7 +5,8 @@ function generateUID () {
 }
 
 export default function questions (state = {}, action) {
-  if (!state.keys) {
+  if (Object.keys(state).length === 0) {
+    console.log("Populating initial state of fake questions ...")
     state = {
       'testQuestion1': {
         id: 'testQuestion1',
@@ -26,7 +27,7 @@ export default function questions (state = {}, action) {
 
   switch(action.type) {
     case ADD_QUESTION :
-      const newQuestion = action.question
+      let newQuestion = action.question
       newQuestion.id = generateUID()
       newQuestion.timestamp = Date.now()
       newQuestion.author = action.author
@@ -40,15 +41,16 @@ export default function questions (state = {}, action) {
     // a user can currently vote multiple times
     // for the same question
     case ADD_VOTE_TO_QUESTION :
-      const question = state[action.questionId]
-      if (question.optionOne.text === action.option) {
-        question.optionOne.votes.push('user id goes here')
+      // there's a nicer way to avoid shallow copies, surely:
+      let question = JSON.parse(JSON.stringify(action.question))
+      if (question.optionOne.text === action.optionText) {
+        question.optionOne.votes.push(action.authedUser)
       } else {
-        question.optionTwo.votes.push('user id goes here')
+        question.optionTwo.votes.push(action.authedUser)
       }
       return {
         ...state,
-        [action.questionId]: question
+        [question.id]: question
       }
     default :
       return state

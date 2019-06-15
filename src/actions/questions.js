@@ -9,11 +9,12 @@ export function addQuestion (question, authedUser) {
   }
 }
 
-export function addVoteToQuestion (questionId, option) {
+export function addVoteToQuestion (question, optionText, authedUser) {
   return {
     type: ADD_VOTE_TO_QUESTION,
-    questionId: questionId,
-    option: option
+    question,
+    optionText,
+    authedUser,
   }
 }
 
