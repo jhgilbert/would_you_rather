@@ -22,7 +22,7 @@ class App extends Component {
           </NavLink>
           <div>
             <Route path='/' exact component={Dashboard} />
-            { /* <Route path='/question/:id' component={Question} /> */ }
+            <Route path='/question/:id' component={Question} />
             <Route path='/new' component={NewQuestion} />
           </div>
         </Router>

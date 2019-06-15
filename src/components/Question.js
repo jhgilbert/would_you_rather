@@ -1,15 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { addVoteToQuestion } from '../actions/questions'
+import { withRouter, Redirect } from 'react-router-dom'
 
 
 class Question extends Component {
+  state = {
+    voted: false
+  }
+
   handleVote = (optionText) => {
     this.props.dispatch(addVoteToQuestion(this.props.question, optionText, this.props.authedUser))
+
+    this.setState(() => ({
+      voted: true
+    }))
   }
 
   render() {
     const { question } = this.props
+
+    if (this.state.voted) {
+      return <Redirect to='/' />
+    }
 
     if (question) {
       return (
@@ -41,7 +54,12 @@ class Question extends Component {
   }
 }
 
-function mapStateToProps( { authedUser, questions }, { id } ) {
+function mapStateToProps( { authedUser, questions }, { id, match } ) {
+  // extremely likely there's a more elegant way to do this
+  if (!id && match) {
+    id = match.params.id
+  }
+
   const question = questions[id]
 
   return {
@@ -50,4 +68,4 @@ function mapStateToProps( { authedUser, questions }, { id } ) {
   }
 }
 
-export default connect(mapStateToProps)(Question)
+export default withRouter(connect(mapStateToProps)(Question))
