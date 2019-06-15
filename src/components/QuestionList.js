@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import QuestionPreview from './QuestionPreview'
 
 class QuestionList extends Component {
   render() {
     return (
-      <div>The question list will go here!</div>
+      <ul>
+        <li><QuestionPreview /></li>
+      </ul>
     )
   }
 }
