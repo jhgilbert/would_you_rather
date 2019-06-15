@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
 import { addQuestion, addVoteToQuestion } from '../actions/questions'
@@ -15,13 +16,16 @@ class App extends Component {
     return (
       <div>
         <Login />
-          <Router>
-            <div>
-              <Route path='/' exact component={Dashboard} />
-              { /* <Route path='/question/:id' component={Question} /> */ }
-              { /* <Route path='/new' component={NewQuestion} /> */ }
-            </div>
-          </Router>
+        <Router>
+          <NavLink to='/new'>
+            New Question
+          </NavLink>
+          <div>
+            <Route path='/' exact component={Dashboard} />
+            { /* <Route path='/question/:id' component={Question} /> */ }
+            <Route path='/new' component={NewQuestion} />
+          </div>
+        </Router>
       </div>
     )
   }

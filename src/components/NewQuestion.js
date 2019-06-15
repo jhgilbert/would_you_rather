@@ -1,54 +1,65 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAddQuestion } from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component {
   state = {
-    optionOne: {
-      text: ''
-    },
-    optionTwo: {
-      text: ''
-    }
-  }
-
-  handleOptionOneChange = (e) => {
-    const optionOne = {
-      text: e.target.value
-    }
-
-    this.setState(() => ({
-      optionOne
-    }))
-  }
-
-  handleOptionTwoChange = (e) => {
-    const optionTwo = {
-      text: e.target.value
-    }
-
-    this.setState(() => ({
-      optionTwo
-    }))
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault()
-
-    this.props.dispatch(handleAddQuestion(this.state, this.props.authedUser))
-
-    this.setState(() => ({
+    question: {
       optionOne: {
         text: ''
       },
       optionTwo: {
         text: ''
       }
+    },
+    toHome: false
+  }
+
+  handleOptionOneChange = (e) => {
+    e.preventDefault()
+
+    let question = JSON.parse(JSON.stringify(this.state.question))
+    question.optionOne = {
+      text: e.target.value
+    }
+
+    this.setState(() => ({
+      question
+    }))
+  }
+
+  handleOptionTwoChange = (e) => {
+    e.preventDefault()
+
+    let question = JSON.parse(JSON.stringify(this.state.question))
+    question.optionTwo = {
+      text: e.target.value
+    }
+
+    this.setState(() => ({
+      question
+    }))
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+    this.props.dispatch(handleAddQuestion(this.state.question, this.props.authedUser))
+    let question = JSON.parse(JSON.stringify(this.state.question))
+
+    this.setState(() => ({
+      question,
+      toHome: true
     }))
   }
 
   render() {
-    const { optionOne, optionTwo } = this.state
+    const { optionOne, optionTwo } = this.state.question
+
+    if (this.state.toHome) {
+      return <Redirect to='/' />
+    }
 
     return (
       <div>
