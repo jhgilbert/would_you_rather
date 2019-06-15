@@ -8,14 +8,7 @@ export default function questions (state = {}, action) {
   switch(action.type) {
     case ADD_QUESTION :
       const newQuestion = action.question
-      if (state.length > 0) {
-        newQuestion.id = generateUID()
-      // hard-coded ID of first question
-      // to allow for crude testing
-      // of API-less initial state setup :)
-      } else {
-        newQuestion.id = 'xyz'
-      }
+      newQuestion.id = generateUID()
       newQuestion.timestamp = Date.now()
       newQuestion.author = "author id goes here"
       newQuestion.optionOne.votes = []

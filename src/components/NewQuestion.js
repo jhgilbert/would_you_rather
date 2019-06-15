@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { handleAddQuestion } from '../actions/questions'
 
 class NewQuestion extends Component {
   state = {
@@ -34,8 +35,16 @@ class NewQuestion extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
 
-    console.log("NewQuestion current state:")
-    console.log(this.state)
+    this.props.dispatch(handleAddQuestion(this.state))
+
+    this.setState(() => ({
+      optionOne: {
+        text: ''
+      },
+      optionTwo: {
+        text: ''
+      }
+    }))
   }
 
   render() {

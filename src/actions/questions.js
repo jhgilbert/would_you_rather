@@ -15,3 +15,10 @@ export function addVoteToQuestion (questionId, option) {
     option: option
   }
 }
+
+// this will do fancier things later,
+// but for now, it's just a wrapper
+// for the relevant action creator
+export function handleAddQuestion (question) {
+  return addQuestion(question)
+}
