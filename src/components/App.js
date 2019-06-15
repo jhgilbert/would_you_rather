@@ -8,8 +8,6 @@ class App extends Component {
   render() {
     this.props.dispatch(setAuthedUser(1))
     const question = {
-        author: 'sarahedo',
-        timestamp: 1467166872634,
         optionOne: {
           votes: ['sarahedo'],
           text: 'have horrible short term memory',

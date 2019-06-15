@@ -3,12 +3,18 @@ import { connect } from 'react-redux'
 
 class NewQuestion extends Component {
   state = {
-    optionOne: '',
-    optionTwo: ''
+    optionOne: {
+      text: ''
+    },
+    optionTwo: {
+      text: ''
+    }
   }
 
   handleOptionOneChange = (e) => {
-    const optionOne = e.target.value
+    const optionOne = {
+      text: e.target.value
+    }
 
     this.setState(() => ({
       optionOne
@@ -16,7 +22,9 @@ class NewQuestion extends Component {
   }
 
   handleOptionTwoChange = (e) => {
-    const optionTwo = e.target.value
+    const optionTwo = {
+      text: e.target.value
+    }
 
     this.setState(() => ({
       optionTwo
@@ -39,12 +47,12 @@ class NewQuestion extends Component {
         <p>Option 1:</p>
         <form>
           <input
-            value={optionOne}
+            value={optionOne.text}
             onChange={this.handleOptionOneChange}
             type="text" />
           <p>Option 2:</p>
           <input
-            value={optionTwo}
+            value={optionTwo.text}
             onChange={this.handleOptionTwoChange}
             type="text" />
           <div>

@@ -1,14 +1,28 @@
 import { ADD_QUESTION, ADD_VOTE_TO_QUESTION } from '../actions/questions'
 
+function generateUID () {
+  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+}
+
 export default function questions (state = {}, action) {
   switch(action.type) {
     case ADD_QUESTION :
-      // hard-coded ID to allow for crude testing
+      const newQuestion = action.question
+      if (state.length > 0) {
+        newQuestion.id = generateUID()
+      // hard-coded ID of first question
+      // to allow for crude testing
       // of API-less initial state setup :)
-      const id = 'xyz'
+      } else {
+        newQuestion.id = 'xyz'
+      }
+      newQuestion.timestamp = Date.now()
+      newQuestion.author = "author id goes here"
+      newQuestion.optionOne.votes = []
+      newQuestion.optionTwo.votes = []
       return {
         ...state,
-        [id]: action.question
+        [newQuestion.id]: newQuestion
       }
     // note that there is no validation yet,
     // a user can currently vote multiple times
