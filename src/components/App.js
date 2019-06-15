@@ -4,6 +4,7 @@ import { setAuthedUser } from '../actions/authedUser'
 import { addQuestion, addVoteToQuestion } from '../actions/questions'
 import NewQuestion from './NewQuestion'
 import QuestionList from './QuestionList'
+import Login from './Login'
 import { LoremIpsum } from 'lorem-ipsum'
 
 class App extends Component {
@@ -39,6 +40,7 @@ class App extends Component {
     return (
       <div className="App">
         This is the app component.
+        <Login />
         <NewQuestion />
         <hr />
         <QuestionList />
