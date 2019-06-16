@@ -9,8 +9,6 @@ const ulStyle = {
 }
 
 const liStyle = {
-  border: '1px solid black',
-  borderRadius: '10px',
   marginBottom: '5px',
   paddingLeft: '0px',
   marginLeft: '0px'
@@ -23,7 +21,7 @@ class QuestionList extends Component {
       <ul style={ulStyle}>
         {this.props.questionIds.map((id) => (
           <li style={liStyle} key={id}>
-            <QuestionPreview id={id} />
+            <QuestionPreview id={id} filter={this.props.filter} />
           </li>
         ))}
       </ul>

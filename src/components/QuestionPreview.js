@@ -35,14 +35,26 @@ class QuestionPreview extends Component {
   }
 
   render() {
-    const { question, authedUser } = this.props
+    const { question, authedUser, filter } = this.props
 
     /*
     return <Redirect to={'/question/' + this.state.selectedQuestionId} />
     */
 
+    switch (filter) {
+      case 'answered':
+        if (!this.state.isAnswered) {
+          return null
+        }
+        break;
+      case 'unanswered':
+        if (this.state.isAnswered) {
+          return null
+        }
+    }
+
     return (
-      <div>
+      <div style={{border: '1px solid black', borderRadius: '10px'}}>
         <h2 style={headerStyle}>Would you rather ...</h2>
         <Option
           option={question.optionOne}
