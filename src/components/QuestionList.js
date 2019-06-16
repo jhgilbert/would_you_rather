@@ -3,6 +3,19 @@ import { connect } from 'react-redux'
 import QuestionPreview from './QuestionPreview'
 import { Redirect } from 'react-router-dom'
 
+const ulStyle = {
+  listStyleType: 'none',
+  paddingLeft: '0px'
+}
+
+const liStyle = {
+  border: '1px solid black',
+  borderRadius: '10px',
+  marginBottom: '5px',
+  paddingLeft: '0px',
+  marginLeft: '0px'
+}
+
 class QuestionList extends Component {
   state = {
     selectedQuestionId: null
@@ -21,9 +34,9 @@ class QuestionList extends Component {
     }
 
     return (
-      <ul>
+      <ul style={ulStyle}>
         {this.props.questionIds.map((id) => (
-          <li key={id} onClick={() => this.handleQuestionSelect(id)}>
+          <li style={liStyle} key={id} onClick={() => this.handleQuestionSelect(id)}>
             <QuestionPreview id={id} />
           </li>
         ))}

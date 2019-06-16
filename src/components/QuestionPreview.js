@@ -1,23 +1,29 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Option from './Option'
+
+const headerStyle = {
+  marginTop: '5px',
+  marginBottom: '3px',
+  paddingLeft: '10px'
+}
+
+const authorCreditStyle = {
+  textAlign: 'right',
+  paddingRight: '10px'
+}
+
 
 class QuestionPreview extends Component {
   render() {
     const { question } = this.props
 
     return (
-      <div style={{border: '1px solid black', padding: '10px'}}>
-        <div>
-          <p>Option 1 ({question.optionOne.votes.length} votes): <br />
-          {question.optionOne.text}
-          </p>
-        </div>
-        <div>
-          <p>Option 2 ({question.optionTwo.votes.length} votes): <br />
-          {question.optionTwo.text}
-          </p>
-        </div>
-        <p><em>by {question.author}</em></p>
+      <div>
+        <h2 style={headerStyle}>Would you rather ...</h2>
+        <Option option={question.optionOne} />
+        <Option option={question.optionTwo} />
+        <p style={authorCreditStyle}><em>by {question.author}</em></p>
       </div>
     )
   }

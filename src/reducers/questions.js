@@ -10,16 +10,16 @@ export default function questions (state = {}, action) {
     state = {
       'testQuestion1': {
         id: 'testQuestion1',
-        optionOne: { text: 'a', votes: [] },
-        optionTwo: { text: 'b', votes: [] },
-        author: 'testAuthor1',
+        optionOne: { text: 'run a race', votes: [] },
+        optionTwo: { text: 'climb a tree', votes: [] },
+        author: 'billy_bob',
         timestamp: Date.now(),
       },
       'testQuestion2': {
         id: 'testQuestion2',
-        optionOne: { text: 'x', votes: [] },
-        optionTwo: { text: 'y', votes: [] },
-        author: 'testAuthor2',
+        optionOne: { text: 'go to a party', votes: [] },
+        optionTwo: { text: 'stay home all night', votes: [] },
+        author: 'jane_doe',
         timestamp: Date.now(),
       }
     }
