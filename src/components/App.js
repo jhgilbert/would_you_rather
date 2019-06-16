@@ -22,11 +22,14 @@ class App extends Component {
     } else {
       return (
         <div>
+          <div style={{textAlign: 'right', fontSize: '.8em'}}>
+            Logged in as <strong>{ authedUser } </strong>
+            <button onClick={this.logout}>Logout</button>
+          </div>
           <Router>
             <NavLink to='/new'>
-              New Question
+              + New Question
             </NavLink>
-            <button onClick={this.logout}>Logout</button>
             <div>
               <Route path='/' exact component={Dashboard} />
               <Route path='/question/:id' component={Question} />
