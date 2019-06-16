@@ -16,9 +16,22 @@ const authorCreditStyle = {
 
 
 class QuestionPreview extends Component {
+  constructor(props) {
+    super(props)
+
+    const { question, authedUser } = this.props
+
+    this.state = {
+      isAnswered: (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser))
+    }
+  }
+
   handleOptionSelection = (question, optionText, authedUser) => {
     console.log("attempting to handle option selection ...")
     this.props.dispatch(addVoteToQuestion(question, optionText, authedUser))
+    this.setState(() => ({
+      isAnswered: true
+    }))
   }
 
   render() {
@@ -34,14 +47,19 @@ class QuestionPreview extends Component {
         <Option
           option={question.optionOne}
           isChosen={question.optionOne.votes.includes(authedUser)}
+          isAnswered={this.state.isAnswered}
           onClick={() => this.handleOptionSelection(question, question.optionOne.text, authedUser)}
         />
         <Option
           option={question.optionTwo}
           isChosen={question.optionTwo.votes.includes(authedUser)}
+          isAnswered={this.state.isAnswered}
           onClick={() => this.handleOptionSelection(question, question.optionTwo.text, authedUser)}
         />
-        <p style={authorCreditStyle}><em>by {question.author}</em></p>
+        { this.state.isAnswered
+          ? <p style={authorCreditStyle}><em>by {question.author}</em></p>
+          : <p></p>
+        }
       </div>
     )
   }
