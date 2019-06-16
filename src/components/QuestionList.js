@@ -17,26 +17,12 @@ const liStyle = {
 }
 
 class QuestionList extends Component {
-  state = {
-    selectedQuestionId: null
-  }
-
-  handleQuestionSelect = (id) => {
-    console.log("handling question select ...")
-    this.setState(() => ({
-      selectedQuestionId: id
-    }))
-  }
 
   render() {
-    if (this.state.selectedQuestionId) {
-      return <Redirect to={'/question/' + this.state.selectedQuestionId} />
-    }
-
     return (
       <ul style={ulStyle}>
         {this.props.questionIds.map((id) => (
-          <li style={liStyle} key={id} onClick={() => this.handleQuestionSelect(id)}>
+          <li style={liStyle} key={id}>
             <QuestionPreview id={id} />
           </li>
         ))}

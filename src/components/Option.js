@@ -13,7 +13,7 @@ class Option extends Component {
     const { option } = this.props
 
     return (
-      <div style={optionStyle}>
+      <div style={optionStyle} onClick={this.props.onClick}>
         <p>{option.text} <br /> {option.votes.length} votes
         </p>
       </div>
