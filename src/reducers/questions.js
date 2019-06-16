@@ -41,12 +41,18 @@ export default function questions (state = {}, action) {
     // a user can currently vote multiple times
     // for the same question
     case ADD_VOTE_TO_QUESTION :
-      // there's a nicer way to avoid shallow copies, surely:
+      const authedUser = action.authedUser
       let question = JSON.parse(JSON.stringify(action.question))
+
+      if (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser)) {
+        return state
+      }
+
+      // there's a nicer way to avoid shallow copies, surely:
       if (question.optionOne.text === action.optionText) {
-        question.optionOne.votes.push(action.authedUser)
+        question.optionOne.votes.push(authedUser)
       } else {
-        question.optionTwo.votes.push(action.authedUser)
+        question.optionTwo.votes.push(authedUser)
       }
       return {
         ...state,
