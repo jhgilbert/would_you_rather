@@ -63,23 +63,26 @@ class NewQuestion extends Component {
 
     return (
       <div>
-        <p>authedUser is {this.props.authedUser}</p>
         <h1>Create New Question</h1>
-        <p>Option 1:</p>
         <form>
+          <p>Would you rather ...</p>
           <input
             value={optionOne.text}
             onChange={this.handleOptionOneChange}
+            placeholder="option 1"
             type="text" />
-          <p>Option 2:</p>
+          <p>or</p>
           <input
             value={optionTwo.text}
             onChange={this.handleOptionTwoChange}
-            type="text" />
+            placeholder="option 2"
+            type="text" />?
           <div>
+          <p>
             <button onClick={this.handleSubmit}>
-              Save
+              Ask the community!
             </button>
+          </p>
           </div>
         </form>
       </div>

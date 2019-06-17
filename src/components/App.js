@@ -27,9 +27,6 @@ class App extends Component {
             <button onClick={this.logout}>Logout</button>
           </div>
           <Router>
-            <NavLink to='/new'>
-              + New Question
-            </NavLink>
             <div>
               <Route path='/' exact component={Dashboard} />
               <Route path='/question/:id' component={Question} />

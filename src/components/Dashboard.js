@@ -38,14 +38,19 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <div style={setDivStyle(filter === 'unanswered')} onClick={() => this.setFilter('unanswered')}>
+        <div>
+          <a href="/new">+ New Question</a>
+        </div>
+        <div>
+          <div style={setDivStyle(filter === 'unanswered')} onClick={() => this.setFilter('unanswered')}>
             Unanswered
-        </div>
-        <div style={setDivStyle(filter === 'answered')} onClick={() => this.setFilter('answered')}>
+          </div>
+          <div style={setDivStyle(filter === 'answered')} onClick={() => this.setFilter('answered')}>
             Answered
-        </div>
-        <div style={setDivStyle(filter === 'all')} onClick={() => this.setFilter('all')}>
+          </div>
+          <div style={setDivStyle(filter === 'all')} onClick={() => this.setFilter('all')}>
             All
+          </div>
         </div>
         <QuestionList filter={this.state.filter} />
       </div>
