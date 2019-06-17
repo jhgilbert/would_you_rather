@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Dashboard from './Dashboard'
+import Leaderboard from './Leaderboard'
 import NewQuestion from './NewQuestion'
 import Question from './Question'
 import Login from './Login'
@@ -29,6 +30,7 @@ class App extends Component {
           <Router>
             <div>
               <Route path='/' exact component={Dashboard} />
+              <Route path='/leaderboard' exact component={Leaderboard} />
               <Route path='/question/:id' component={Question} />
               <Route path='/new' component={NewQuestion} />
             </div>
