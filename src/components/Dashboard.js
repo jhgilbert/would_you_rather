@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import QuestionList from './QuestionList'
+import Leaderboard from './Leaderboard'
 
 function setDivStyle(isSelected) {
   let style = {
