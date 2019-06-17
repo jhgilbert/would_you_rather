@@ -29,13 +29,11 @@ class Login extends Component {
     const { inputtedValue } = this.state
 
     return (
-      <div style={{'border': '1px solid black', padding: '10px'}}>
-      <h1>Login</h1>
-        <p>authed user is {this.props.authedUser}</p>
-        <p>proposed authed user is {this.state.inputtedValue}</p>
+      <div>
+      <h1>Log in</h1>
         <form>
-          <input type="text" value={inputtedValue} onChange={this.handleInputChange} />
-          <button onClick={this.handleSubmit}>Save</button>
+          <input type="text" placeholder="username" value={inputtedValue} onChange={this.handleInputChange} />
+          <p><button onClick={this.handleSubmit}>Submit</button></p>
         </form>
       </div>)
   }
