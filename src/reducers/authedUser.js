@@ -2,7 +2,7 @@ import { SET_AUTHED_USER, LOG_OUT_AUTHED_USER } from '../actions/authedUser'
 
 // default user is set in here with maximum laziness
 // for testing purposes
-export default function authedUser (state = 'jen', action) {
+export default function authedUser (state = null, action) {
   switch (action.type) {
     case SET_AUTHED_USER :
       return action.id
