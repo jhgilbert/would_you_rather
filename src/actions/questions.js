@@ -1,4 +1,4 @@
-import { saveQuestionAnswer } from '../utils/api'
+import { saveQuestion, saveQuestionAnswer } from '../utils/api'
 
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const ADD_VOTE_TO_QUESTION = 'ADD_VOTE_TO_QUESTION'
@@ -28,11 +28,16 @@ export function addVoteToQuestion (question, optionText, authedUser) {
   }
 }
 
-// this will do fancier things later,
-// but for now, it's just a wrapper
-// for the relevant action creator
 export function handleAddQuestion (question, author) {
-  return addQuestion(question, author)
+  return (dispatch) => {
+    dispatch(addQuestion(question, author))
+    return saveQuestion(question)
+      .catch((e) => {
+        console.warn('Error in saveQuestion: ', e)
+        // TODO: dispatch an action that rolls back the question save
+        alert('There was an error.')
+      })
+  }
 }
 
 export function handleQuestionAnswer (question, optionText, authedUser) {
