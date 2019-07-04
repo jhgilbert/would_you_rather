@@ -18,7 +18,7 @@ class QuestionDetail extends Component {
   }
 
   render() {
-    const { question } = this.props
+    const { users, question } = this.props
 
     if (this.state.voted) {
       return <Redirect to='/' />
@@ -27,22 +27,22 @@ class QuestionDetail extends Component {
     if (question) {
       return (
         <div>
-          <p>Question details: </p>
+          <h1>Question details</h1>
+          <h2>Would you rather ...</h2>
           {/* what follows has developed major code smell at this point, oops */}
-          <div>{JSON.stringify(question)}</div>
-          <div>
-            <p>Option 1 ({question.optionOne.votes.length} votes): <br />
-            {question.optionOne.text}
-            </p>
+          <div style={{width: '200px', display: 'inline-block', verticalAlign: 'top', padding: '5px', border: '1px solid black'}}>
+            <p>{question.optionOne.text}</p>
+            <p>({question.optionOne.votes.length} votes)</p>
             <button onClick={() => {this.handleVote(question.optionOne.text)}}>Vote!</button>
           </div>
-          <div>
-            <p>Option 2 ({question.optionTwo.votes.length} votes): <br />
-            {question.optionTwo.text}
-            </p>
+          <div style={{width: '200px', display: 'inline-block', verticalAlign: 'top', padding: '5px', border: '1px solid black'}}>
+            <p>{question.optionTwo.text}</p>
+            <p>({question.optionTwo.votes.length} votes)</p>
+            <button onClick={() => {this.handleVote(question.optionTwo.text)}}>Vote!</button>
           </div>
-          <p><em>by {question.author}</em></p>
-          <button onClick={() => {this.handleVote(question.optionTwo.text)}}>Vote!</button>
+          <p><em>by ...</em></p>
+          <p><img style={{width: '75px', height: '75px'}} src={users[question.author].avatarURL} /></p>
+          <p>{question.author}</p>
         </div>
       )
     } else {
@@ -54,7 +54,7 @@ class QuestionDetail extends Component {
   }
 }
 
-function mapStateToProps( { authedUser, questions }, { id, match } ) {
+function mapStateToProps( { users, authedUser, questions }, { id, match } ) {
   // extremely likely there's a more elegant way to do this
   if (!id && match) {
     id = match.params.id
@@ -63,6 +63,7 @@ function mapStateToProps( { authedUser, questions }, { id, match } ) {
   const question = questions[id]
 
   return {
+    users,
     authedUser,
     question
   }
