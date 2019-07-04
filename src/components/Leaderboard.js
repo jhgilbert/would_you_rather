@@ -39,9 +39,12 @@ function creditAuthor(users, question) {
   users[question.author].asked++
 }
 
-function mapStateToProps({questions}) {
-  let users = {}
 
+function mapStateToProps({questions, users}) {
+  console.log("Questions: ", questions)
+  console.log("Users: ", users)
+
+  /*
   Object.keys(questions).forEach(function (questionId) {
     const question = questions[questionId]
     console.log("from leaderboard loop, question is ....")
@@ -49,6 +52,7 @@ function mapStateToProps({questions}) {
     creditAuthor(users, question)
     creditVoters(users, question)
   })
+  */
 
   return {
     users
