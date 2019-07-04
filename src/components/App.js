@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import { handleInitialData } from '../actions/shared'
 import Dashboard from './Dashboard'
 import Leaderboard from './Leaderboard'
+import Nav from './Nav'
 import NewQuestion from './NewQuestion'
 import Question from './Question'
 import Login from './Login'
@@ -32,6 +33,7 @@ class App extends Component {
             Logged in as <strong>{ authedUser } </strong>
             <button onClick={this.logout}>Logout</button>
           </div>
+          <Nav />
           <Router>
             <div>
               <Route path='/' exact component={Dashboard} />

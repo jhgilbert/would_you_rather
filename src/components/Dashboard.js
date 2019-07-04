@@ -39,10 +39,7 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <div>
-          <p><a href="/new">+ New Question</a></p>
-          <p><a href="/leaderboard">Leaderboard</a></p>
-        </div>
+        <h1>Dashboard</h1>
         <div>
           <div style={setDivStyle(filter === 'unanswered')} onClick={() => this.setFilter('unanswered')}>
             Unanswered
