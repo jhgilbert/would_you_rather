@@ -1,3 +1,5 @@
+import { saveQuestionAnswer } from '../utils/api'
+
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const ADD_VOTE_TO_QUESTION = 'ADD_VOTE_TO_QUESTION'
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS'
@@ -31,4 +33,24 @@ export function addVoteToQuestion (question, optionText, authedUser) {
 // for the relevant action creator
 export function handleAddQuestion (question, author) {
   return addQuestion(question, author)
+}
+
+export function handleQuestionAnswer (question, optionText, authedUser) {
+  return (dispatch) => {
+    dispatch(addVoteToQuestion(question, optionText, authedUser))
+
+    // a silly patch due to poor planning on my part, oops
+    const args = {
+      authedUser:authedUser,
+      qid: question['id'],
+      answer: optionText
+    }
+
+    return saveQuestionAnswer(args)
+      .catch((e) => {
+        console.warn('Error in saveQuestionAnswer: ', e)
+        // TODO: dispatch an action that rolls back the vote
+        alert('There was an error.')
+      })
+  }
 }

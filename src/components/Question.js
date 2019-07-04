@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addVoteToQuestion } from '../actions/questions'
+import { handleQuestionAnswer } from '../actions/questions'
 import { withRouter, Redirect } from 'react-router-dom'
 
 
@@ -10,7 +10,7 @@ class Question extends Component {
   }
 
   handleVote = (optionText) => {
-    this.props.dispatch(addVoteToQuestion(this.props.question, optionText, this.props.authedUser))
+    handleQuestionAnswer(this.props.question, optionText, this.props.authedUser)
 
     this.setState(() => ({
       voted: true
