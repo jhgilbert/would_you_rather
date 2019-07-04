@@ -3,9 +3,28 @@ import { connect } from 'react-redux'
 
 class Leaderboard extends Component {
   render() {
+    let { users, tallies } = this.props
     return (
       <div>
-        <div>{JSON.stringify(this.props.tallies)}</div>
+        <h1>Leaderboard</h1>
+        <ol>
+          {tallies.map((tally) => (
+            <li key={tally.username}>
+              <div>
+                <img style={{height: '75px', width: '75px'}} src={users[tally.username].avatarURL} />
+              </div>
+              <div>
+                Username: {tally.username}
+              </div>
+              <div>
+                Asked: {tally.asked}
+              </div>
+              <div>
+                Answered: {tally.answered}
+              </div>
+            </li>
+          ))}
+        </ol>
       </div>
     )
   }
