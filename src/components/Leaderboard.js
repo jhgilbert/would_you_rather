@@ -4,58 +4,65 @@ import { connect } from 'react-redux'
 class Leaderboard extends Component {
   render() {
     return (
-      <div>{JSON.stringify(this.props.users)}</div>
+      <div>
+        <div>{JSON.stringify(this.props.tallies)}</div>
+      </div>
     )
   }
 }
 
-function creditVoters(users, question) {
+function creditVoters(talliesObj, question) {
   let voters = [...question.optionOne.votes, ...question.optionTwo.votes]
 
   // loop through all votes
   voters.forEach(function (username) {
-    // add the user if not already found
-    if (!(Object.keys(users).includes(username))) {
-      users[username] = {
-        asked: 0,
-        answered: 0
-      }
-    }
-    // credit the user for voting
-    users[username].answered++
+    talliesObj[username].answered++
   })
 }
 
-function creditAuthor(users, question) {
-  // add author if not already found
-  if (!(Object.keys(users).includes(question.author))) {
-    users[question.author] = {
-      asked: 0,
-      answered: 0
-    }
-  }
+function formatTalliesForLeaderboard(talliesObj) {
+  let tallies = []
 
-  // credit the author
-  users[question.author].asked++
+  Object.keys(talliesObj).forEach(function (username) {
+    tallies.push({
+      username: username,
+      asked: talliesObj[username].asked,
+      answered: talliesObj[username].answered
+    })
+  })
+
+  tallies.sort((a, b) => (b.asked + b.answered) - (a.asked + a.answered))
+
+  return tallies
 }
 
 
 function mapStateToProps({questions, users}) {
-  console.log("Questions: ", questions)
-  console.log("Users: ", users)
+  let talliesObj = {}
 
-  /*
+  // add tallies for each user
+  Object.keys(users).forEach(function (username) {
+    talliesObj[username] = {
+      asked: 0,
+      answered: 0
+    }
+  })
+
+  // calculate tallies for each user
   Object.keys(questions).forEach(function (questionId) {
     const question = questions[questionId]
-    console.log("from leaderboard loop, question is ....")
-    console.log(question)
-    creditAuthor(users, question)
-    creditVoters(users, question)
+    // credit the author
+    talliesObj[question.author].asked++
+    // credit the voters
+    creditVoters(talliesObj, question)
   })
-  */
+
+  // format the tallies object into a sorted array
+  const tallies = formatTalliesForLeaderboard(talliesObj)
 
   return {
-    users
+    users,
+    tallies
   }
 }
 
