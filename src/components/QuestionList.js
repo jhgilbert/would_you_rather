@@ -30,10 +30,17 @@ class QuestionList extends Component {
 }
 
 // skipping authed user for now
-function mapStateToProps( { questions } ) {
+function mapStateToProps( { authedUser, questions }, { filter } ) {
+  let questionIds = Object.keys(questions).sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+
+  if (filter === 'answered') {
+    questionIds = questionIds.filter((id) => questions[id].optionOne.votes.includes(authedUser) || questions[id].optionTwo.votes.includes(authedUser))
+  } else if (filter === 'unanswered') {
+    questionIds = questionIds.filter((id) => !questions[id].optionOne.votes.includes(authedUser) && !questions[id].optionTwo.votes.includes(authedUser))
+  }
+
   return {
-    questionIds: Object.keys(questions)
-      .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+    questionIds
   }
 }
 

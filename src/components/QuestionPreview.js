@@ -2,34 +2,9 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 
 class QuestionPreview extends Component {
-  constructor(props) {
-    super(props)
-
-    const { question, authedUser } = this.props
-
-    this.state = {
-      isAnswered: (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser))
-    }
-  }
 
   render() {
-    const { question, authedUser, filter } = this.props
-
-    /*
-    return <Redirect to={'/question/' + this.state.selectedQuestionId} />
-    */
-
-    switch (filter) {
-      case 'answered':
-        if (!this.state.isAnswered) {
-          return null
-        }
-        break;
-      case 'unanswered':
-        if (this.state.isAnswered) {
-          return null
-        }
-    }
+    const { question } = this.props
 
     return (
       <a href={`/questions/${question.id}`} style={{display: 'block'}}>
@@ -39,11 +14,10 @@ class QuestionPreview extends Component {
   }
 }
 
-function mapStateToProps({ authedUser, questions }, { id }) {
+function mapStateToProps({ questions }, { id }) {
   const question = questions[id]
 
   return {
-    authedUser,
     question
   }
 }
