@@ -1,19 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { addVoteToQuestion } from '../actions/questions'
-import Option from './Option'
-
-const headerStyle = {
-  marginTop: '5px',
-  marginBottom: '3px',
-  paddingLeft: '10px'
-}
-
-const authorCreditStyle = {
-  textAlign: 'right',
-  paddingRight: '10px'
-}
-
 
 class QuestionPreview extends Component {
   constructor(props) {
@@ -24,14 +10,6 @@ class QuestionPreview extends Component {
     this.state = {
       isAnswered: (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser))
     }
-  }
-
-  handleOptionSelection = (question, optionText, authedUser) => {
-    console.log("attempting to handle option selection ...")
-    this.props.dispatch(addVoteToQuestion(question, optionText, authedUser))
-    this.setState(() => ({
-      isAnswered: true
-    }))
   }
 
   render() {
@@ -54,26 +32,9 @@ class QuestionPreview extends Component {
     }
 
     return (
-      <div style={{border: '1px solid black', borderRadius: '10px'}}>
-        <h2 style={headerStyle}>Would you rather ...</h2>
-        <Option
-          option={question.optionOne}
-          isChosen={question.optionOne.votes.includes(authedUser)}
-          isAnswered={this.state.isAnswered}
-          onClick={() => this.handleOptionSelection(question, question.optionOne.text, authedUser)}
-        />
-        <Option
-          option={question.optionTwo}
-          isChosen={question.optionTwo.votes.includes(authedUser)}
-          isAnswered={this.state.isAnswered}
-          onClick={() => this.handleOptionSelection(question, question.optionTwo.text, authedUser)}
-        />
-        { this.state.isAnswered
-          ? <p style={authorCreditStyle}><em>by {question.author}</em></p>
-          : <p></p>
-        }
-        <div style={{paddingLeft: '5px', marginBottom: '5px'}}><a href={`/questions/${question.id}`}>details</a></div>
-      </div>
+      <a href={`/questions/${question.id}`} style={{display: 'block'}}>
+        {`Would you rather ${question.optionOne.text} or ${question.optionTwo.text}?`}
+      </a>
     )
   }
 }
