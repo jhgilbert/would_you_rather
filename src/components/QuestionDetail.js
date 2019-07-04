@@ -4,7 +4,7 @@ import { handleQuestionAnswer } from '../actions/questions'
 import { withRouter, Redirect } from 'react-router-dom'
 
 
-class Question extends Component {
+class QuestionDetail extends Component {
   state = {
     voted: false
   }
@@ -68,4 +68,4 @@ function mapStateToProps( { authedUser, questions }, { id, match } ) {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(Question))
+export default withRouter(connect(mapStateToProps)(QuestionDetail))

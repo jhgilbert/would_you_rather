@@ -72,6 +72,7 @@ class QuestionPreview extends Component {
           ? <p style={authorCreditStyle}><em>by {question.author}</em></p>
           : <p></p>
         }
+        <div style={{paddingLeft: '5px', marginBottom: '5px'}}><a href={`/questions/${question.id}`}>details</a></div>
       </div>
     )
   }
