@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { handleQuestionAnswer } from '../actions/questions'
 
 const optionStyle = {
   display: 'inline-block',
@@ -21,8 +22,8 @@ class Chooser extends Component {
     }
   }
 
-  handleVote = () => {
-    console.log("clicked!")
+  handleVote = (question, optionText, authedUser) => {
+    this.props.dispatch(handleQuestionAnswer(question, optionText, authedUser))
   }
 
   render () {
@@ -34,7 +35,7 @@ class Chooser extends Component {
         <div style={optionStyle}>
           <div>{question.optionOne.text}</div>
           {!isAnswered && (
-            <button onClick={this.handleVote}>Vote!</button>
+            <button onClick={() => this.handleVote(question, "optionOne", authedUser)}>Vote!</button>
           )}
           {isAnswered && (
             <div>{question.optionOne.votes.length} votes</div>
@@ -46,7 +47,7 @@ class Chooser extends Component {
             <div>{question.optionTwo.votes.length} votes</div>
           )}
           {!isAnswered && (
-            <button onClick={this.handleVote}>Vote!</button>
+            <button onClick={() => this.handleVote(question, "optionTwo", authedUser)}>Vote!</button>
           )}
         </div>
       </div>

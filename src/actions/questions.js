@@ -47,9 +47,11 @@ export function handleQuestionAnswer (question, optionText, authedUser) {
     // a silly patch due to poor planning on my part, oops
     const args = {
       authedUser:authedUser,
-      qid: question['id'],
+      qid: question.id,
       answer: optionText
     }
+
+    console.log("args are ", args)
 
     return saveQuestionAnswer(args)
       .catch((e) => {
