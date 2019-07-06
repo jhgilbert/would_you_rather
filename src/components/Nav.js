@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+
 
 const ROUTES = {
   dashboard: '/',
@@ -14,12 +16,11 @@ function isCurrentRoute(routeName) {
 
 class Nav extends Component {
   render() {
-    const path = window.location.pathname
     return (
       <nav>
-        <a className={isCurrentRoute('dashboard') ? 'active' : null} href="/">Dashboard</a>
-        <a className={isCurrentRoute('newQuestion') ? 'active' : null} href="/new">New Question</a>
-        <a className={isCurrentRoute('leaderboard') ? 'active' : null} href="/leaderboard">Leaderboard</a>
+        <NavLink activeClassName="active" to="/" exact>Dashboard</NavLink>
+        <NavLink activeClassName="active" to="/new">New Question</NavLink>
+        <NavLink activeClassName="active" to="/leaderboard">Leaderboard</NavLink>
       </nav>
     )
   }

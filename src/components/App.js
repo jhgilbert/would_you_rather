@@ -33,13 +33,13 @@ class App extends Component {
             Logged in as <strong>{ authedUser } </strong>
             <button onClick={this.logout}>Logout</button>
           </div>
-          <Nav />
           <Router>
+            <Nav />
             <div>
               <Route path='/' exact component={Dashboard} />
               <Route path='/leaderboard' exact component={Leaderboard} />
               <Route path='/questions/:id' component={QuestionDetail} />
-              <Route path='/new' component={NewQuestion} />
+              <Route path='/new' exact component={NewQuestion} />
             </div>
           </Router>
         </div>
