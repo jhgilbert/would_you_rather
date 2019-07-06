@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import UserDetails from './UserDetails'
 import { connect } from 'react-redux'
 
+const leaderboardItemStyle = {
+  border: '1px solid black',
+  padding: '10px',
+  marginBottom: '10px'
+}
+
 class Leaderboard extends Component {
   render() {
     let { tallies } = this.props
@@ -10,7 +16,7 @@ class Leaderboard extends Component {
         <h1>Leaderboard</h1>
         <ol>
           {tallies.map((tally) => (
-            <li key={tally.username} style={{border: '1px solid black', padding: '10px', marginBottom: '10px'}}>
+            <li key={tally.username} style={leaderboardItemStyle}>
               <UserDetails username={tally.username} />
               <div style={{marginTop: '5px'}}>
                 <em>Asked:</em> <strong>{tally.asked}</strong>

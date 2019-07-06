@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Option from './Option'
+import NotFoundError from './NotFoundError'
 import UserDetails from './UserDetails'
 import { withRouter } from 'react-router-dom'
 
@@ -22,7 +23,7 @@ class QuestionDetail extends Component {
       )
     } else {
       return (
-        <h1>404 -- question not found.</h1>
+        <NotFoundError />
       )
     }
 

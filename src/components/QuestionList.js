@@ -28,7 +28,6 @@ class QuestionList extends Component {
   }
 }
 
-// skipping authed user for now
 function mapStateToProps( { authedUser, questions }, { filter } ) {
   let questionIds = Object.keys(questions).sort((a,b) => questions[b].timestamp - questions[a].timestamp)
 
