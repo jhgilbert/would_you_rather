@@ -21,7 +21,12 @@ class App extends Component {
   render() {
     const { authedUser } = this.props
 
-    if (!authedUser) {
+    if (this.props.loading) {
+      return (
+        <div>Loading ...</div>
+      )
+    }
+    else if (!authedUser) {
       return (
         <Login />
       )
@@ -47,8 +52,9 @@ class App extends Component {
   }
 }
 
-function mapStateToProps ( { authedUser } ) {
+function mapStateToProps ( { loading, authedUser } ) {
   return {
+    loading,
     authedUser
   }
 }
