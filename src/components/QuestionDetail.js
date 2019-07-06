@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Option from './Option'
+import UserDetails from './UserDetails'
 import { handleQuestionAnswer } from '../actions/questions'
 import { withRouter, Redirect } from 'react-router-dom'
 
@@ -17,8 +18,7 @@ class QuestionDetail extends Component {
           <Option questionId={question.id} optionKey="optionOne" />
           <Option questionId={question.id} optionKey="optionTwo" />
           <p><em>by ...</em></p>
-          <p><img style={{width: '75px', height: '75px'}} src={users[question.author].avatarURL} /></p>
-          <p>{question.author}</p>
+          <UserDetails username={question.author} />
         </div>
       )
     } else {

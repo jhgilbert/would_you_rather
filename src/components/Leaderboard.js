@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import UserDetails from './UserDetails'
 import { connect } from 'react-redux'
 
 class Leaderboard extends Component {
@@ -10,12 +11,7 @@ class Leaderboard extends Component {
         <ol>
           {tallies.map((tally) => (
             <li key={tally.username}>
-              <div>
-                <img style={{height: '75px', width: '75px'}} src={users[tally.username].avatarURL} />
-              </div>
-              <div>
-                Username: {tally.username}
-              </div>
+              <UserDetails username={tally.username} />
               <div>
                 Asked: {tally.asked}
               </div>
