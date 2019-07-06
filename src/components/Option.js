@@ -31,7 +31,7 @@ class Option extends Component {
     return(
       <div style={optionStyle}>
         <div style={{position: 'absolute'}}>
-          {question[optionKey].votes.includes(authedUser) && <span>✅</span>}
+          {question[optionKey].votes.includes(authedUser) && <span role="img" aria-label="green checkmark">✅</span>}
         </div>
         <div>{question[optionKey].text}</div>
         {!isAnswered && (

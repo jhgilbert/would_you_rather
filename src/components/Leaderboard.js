@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 class Leaderboard extends Component {
   render() {
-    let { users, tallies } = this.props
+    let { tallies } = this.props
     return (
       <div>
         <h1>Leaderboard</h1>
@@ -76,7 +76,6 @@ function mapStateToProps({questions, users}) {
   const tallies = formatTalliesForLeaderboard(talliesObj)
 
   return {
-    users,
     tallies
   }
 }

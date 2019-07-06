@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Option from './Option'
 import UserDetails from './UserDetails'
-import { handleQuestionAnswer } from '../actions/questions'
-import { withRouter, Redirect } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 
 class QuestionDetail extends Component {
 
   render() {
-    const { users, question } = this.props
+    const { question } = this.props
 
     if (question) {
       return (
@@ -30,7 +29,7 @@ class QuestionDetail extends Component {
   }
 }
 
-function mapStateToProps( { users, questions }, { id, match } ) {
+function mapStateToProps( { questions }, { id, match } ) {
   // extremely likely there's a more elegant way to do this
   if (!id && match) {
     id = match.params.id
@@ -39,7 +38,6 @@ function mapStateToProps( { users, questions }, { id, match } ) {
   const question = questions[id]
 
   return {
-    users,
     question
   }
 }

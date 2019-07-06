@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionPreview from './QuestionPreview'
-import { Redirect } from 'react-router-dom'
 
 const ulStyle = {
   listStyleType: 'none',

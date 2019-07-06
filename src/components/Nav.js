@@ -1,18 +1,5 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-
-
-const ROUTES = {
-  dashboard: '/',
-  newQuestion: '/new',
-  leaderboard: '/leaderboard'
-}
-
-function isCurrentRoute(routeName) {
-  const path = window.location.pathname
-  return path === ROUTES[routeName]
-}
 
 class Nav extends Component {
   render() {
