@@ -30,7 +30,6 @@ class QuestionDetail extends Component {
 }
 
 function mapStateToProps( { questions }, { id, match } ) {
-  // extremely likely there's a more elegant way to do this
   if (!id && match) {
     id = match.params.id
   }

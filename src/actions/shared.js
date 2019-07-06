@@ -5,7 +5,7 @@ import { initializeLoading, completeLoading } from '../actions/loading'
 import { setAuthedUser } from '../actions/authedUser'
 
 const AUTHED_USER = "sarahedo"
-const TEST_MODE = true
+const TEST_MODE = false
 
 export function handleInitialData () {
   return (dispatch) => {
