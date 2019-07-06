@@ -10,13 +10,13 @@ class Leaderboard extends Component {
         <h1>Leaderboard</h1>
         <ol>
           {tallies.map((tally) => (
-            <li key={tally.username}>
+            <li key={tally.username} style={{border: '1px solid black', padding: '10px', marginBottom: '10px'}}>
               <UserDetails username={tally.username} />
-              <div>
-                Asked: {tally.asked}
+              <div style={{marginTop: '5px'}}>
+                <em>Asked:</em> <strong>{tally.asked}</strong>
               </div>
               <div>
-                Answered: {tally.answered}
+                <em>Answered:</em> <strong>{tally.answered}</strong>
               </div>
             </li>
           ))}

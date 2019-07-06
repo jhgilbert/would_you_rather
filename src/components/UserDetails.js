@@ -8,8 +8,9 @@ class UserDetails extends Component {
 
     return (
       <div>
-        <p><img alt={'avatar for ' + user.name} style={{width: '75px', height: '75px'}} src={user.avatarURL} /></p>
-        <p>{user.name}</p>
+        <img alt={'avatar for ' + user.name} style={{width: '75px', height: '75px'}} src={user.avatarURL} />
+        <br />
+        {user.name}
       </div>
     )
   }
