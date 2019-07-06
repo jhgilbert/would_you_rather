@@ -24,6 +24,9 @@ class Chooser extends Component {
     return (
       <div>
         <div style={optionStyle}>
+          <div style={{position: 'absolute'}}>
+            {question.optionOne.votes.includes(authedUser) && <span>✅</span>}
+          </div>
           <div>{question.optionOne.text}</div>
           {!isAnswered && (
             <button onClick={() => this.handleVote(question, "optionOne", authedUser)}>Vote!</button>
@@ -33,6 +36,9 @@ class Chooser extends Component {
           )}
         </div>
         <div style={optionStyle}>
+          <div style={{position: 'absolute'}}>
+            {question.optionTwo.votes.includes(authedUser) && <span>✅</span>}
+          </div>
           <div>{question.optionTwo.text}</div>
           {isAnswered && (
             <div>{question.optionTwo.votes.length} votes</div>
