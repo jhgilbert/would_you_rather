@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Chooser from './Chooser'
+import Option from './Option'
 import { handleQuestionAnswer } from '../actions/questions'
 import { withRouter, Redirect } from 'react-router-dom'
 
@@ -14,7 +14,8 @@ class QuestionDetail extends Component {
         <div>
           <h1>Question details</h1>
           <h2>Would you rather ...</h2>
-          <Chooser questionId={question.id} />
+          <Option questionId={question.id} optionKey="optionOne" />
+          <Option questionId={question.id} optionKey="optionTwo" />
           <p><em>by ...</em></p>
           <p><img style={{width: '75px', height: '75px'}} src={users[question.author].avatarURL} /></p>
           <p>{question.author}</p>
