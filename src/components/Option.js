@@ -9,7 +9,7 @@ const optionStyle = {
   padding: '10px',
   border: '1px solid black',
   verticalAlign: 'top',
-  minHeight: '75px'
+  minHeight: '50px'
 }
 
 class Option extends Component {
@@ -33,15 +33,12 @@ class Option extends Component {
         <div style={{position: 'absolute'}}>
           {question[optionKey].votes.includes(authedUser) && <span role="img" aria-label="green checkmark">✅</span>}
         </div>
-        <div>{question[optionKey].text}</div>
+        <div style={{padding: '10px'}}><strong>{question[optionKey].text}</strong></div>
         {!isAnswered && (
           <button onClick={() => this.handleVote(question, optionKey, authedUser)}>Vote!</button>
         )}
         {isAnswered && (
-          <div>
-            <div>{question[optionKey].votes.length} votes</div>
-            <div>{this.calculateVotePercentage(question, optionKey)}%</div>
-          </div>
+          <div>{question[optionKey].votes.length} votes ({this.calculateVotePercentage(question, optionKey)}%)</div>
         )}
       </div>
     )
