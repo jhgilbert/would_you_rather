@@ -21,7 +21,7 @@ class QuestionList extends Component {
       <ul style={ulStyle}>
         {this.props.questionIds.map((id) => (
           <li style={liStyle} key={id}>
-            <QuestionPreview id={id} filter={this.props.filter} />
+            <QuestionPreview id={id} />
           </li>
         ))}
       </ul>
