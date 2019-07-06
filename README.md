@@ -1,3 +1,17 @@
+# About
+
+This is my homework submission for Part 2 of Udacity's React Nanodegree. It's ugly but hey, it does what it's supposed to do. Among its many exciting features:
+
+- Log in!
+- Vote on which thing you'd rather do!
+- See how other people voted!
+- See which users have been the most active!
+- Log out!
+
+... AND MORE!
+
+# Boilerplate instructions from 'Create React App'
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
