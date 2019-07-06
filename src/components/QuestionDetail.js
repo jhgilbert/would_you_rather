@@ -23,7 +23,7 @@ class QuestionDetail extends Component {
       )
     } else {
       return (
-        <div>404 -- question not found.</div>
+        <h1>404 -- question not found.</h1>
       )
     }
 
