@@ -4,7 +4,14 @@ import { setAuthedUser } from '../actions/authedUser'
 
 class Login extends Component {
   state = {
-    inputtedValue: ''
+    inputtedValue: '',
+    userIsValid: true
+  }
+
+  validateUser = (username) => {
+    console.log("validating user ...")
+    const { users } = this.props
+    return Object.keys(users).includes(username)
   }
 
   handleInputChange = (e) => {
@@ -22,11 +29,20 @@ class Login extends Component {
 
     const newAuthedUserId = this.state.inputtedValue
 
-    this.props.dispatch(setAuthedUser(newAuthedUserId))
+    if(this.validateUser(newAuthedUserId)) {
+      this.setState(() => ({
+        userIsValid: true
+      }))
+      this.props.dispatch(setAuthedUser(newAuthedUserId))
+    } else {
+      this.setState(() => ({
+        userIsValid: false
+      }))
+    }
   }
 
   render() {
-    const { inputtedValue } = this.state
+    const { inputtedValue, userIsValid } = this.state
 
     return (
       <div>
@@ -34,15 +50,16 @@ class Login extends Component {
         <form>
           <input type="text" placeholder="username" value={inputtedValue} onChange={this.handleInputChange} />
           <p><button onClick={this.handleSubmit}>Submit</button></p>
+          {!userIsValid && <p style={{color: "red"}}>Sorry, that username is invalid.</p>}
         </form>
       </div>)
   }
 }
 
-// keeping it simple for the moment
-function mapStateToProps({ authedUser }) {
+function mapStateToProps({ authedUser, users }) {
   return {
-    authedUser
+    authedUser,
+    users
   }
 }
 
