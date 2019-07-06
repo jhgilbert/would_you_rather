@@ -12,15 +12,6 @@ const optionStyle = {
 }
 
 class Chooser extends Component {
-  constructor(props) {
-    super(props)
-
-    const { question, authedUser } = this.props
-
-    this.state = {
-      isAnswered: (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser))
-    }
-  }
 
   handleVote = (question, optionText, authedUser) => {
     this.props.dispatch(handleQuestionAnswer(question, optionText, authedUser))
@@ -28,7 +19,7 @@ class Chooser extends Component {
 
   render () {
     const { authedUser, question } = this.props
-    const isAnswered = this.state.isAnswered
+    const isAnswered = (question.optionOne.votes.includes(authedUser) || question.optionTwo.votes.includes(authedUser))
 
     return (
       <div>

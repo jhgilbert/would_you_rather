@@ -19,11 +19,11 @@ export function addQuestion (question, authedUser) {
   }
 }
 
-export function addVoteToQuestion (question, optionText, authedUser) {
+export function addVoteToQuestion (question, option, authedUser) {
   return {
     type: ADD_VOTE_TO_QUESTION,
     question,
-    optionText,
+    option,
     authedUser,
   }
 }
@@ -40,15 +40,15 @@ export function handleAddQuestion (question, author) {
   }
 }
 
-export function handleQuestionAnswer (question, optionText, authedUser) {
+export function handleQuestionAnswer (question, option, authedUser) {
   return (dispatch) => {
-    dispatch(addVoteToQuestion(question, optionText, authedUser))
+    dispatch(addVoteToQuestion(question, option, authedUser))
 
     // a silly patch due to poor planning on my part, oops
     const args = {
       authedUser:authedUser,
       qid: question.id,
-      answer: optionText
+      answer: option
     }
 
     console.log("args are ", args)

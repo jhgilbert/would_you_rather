@@ -22,9 +22,7 @@ export default function questions (state = {}, action) {
         ...state,
         [newQuestion.id]: newQuestion
       }
-    // note that there is no validation yet,
-    // a user can currently vote multiple times
-    // for the same question
+
     case ADD_VOTE_TO_QUESTION :
       const authedUser = action.authedUser
       let question = JSON.parse(JSON.stringify(action.question))
@@ -33,12 +31,8 @@ export default function questions (state = {}, action) {
         return state
       }
 
-      // there's a nicer way to avoid shallow copies, surely:
-      if (question.optionOne.text === action.optionText) {
-        question.optionOne.votes.push(authedUser)
-      } else {
-        question.optionTwo.votes.push(authedUser)
-      }
+      question[action.option].votes.push(authedUser)
+
       return {
         ...state,
         [question.id]: question
