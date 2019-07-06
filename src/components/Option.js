@@ -8,12 +8,20 @@ const optionStyle = {
   textAlign: 'center',
   padding: '10px',
   border: '1px solid black',
-  verticalAlign: 'top'
+  verticalAlign: 'top',
+  minHeight: '75px'
 }
 
 class Option extends Component {
   handleVote = (question, optionText, authedUser) => {
     this.props.dispatch(handleQuestionAnswer(question, optionText, authedUser))
+  }
+
+  calculateVotePercentage = (question, optionKey) => {
+    const totalVotes = question.optionOne.votes.length + question.optionTwo.votes.length
+    const votesForThisOption = question[optionKey].votes.length
+    const rawPercentage = (votesForThisOption / totalVotes) * 100
+    return rawPercentage.toFixed(0)
   }
 
   render () {
@@ -30,7 +38,10 @@ class Option extends Component {
           <button onClick={() => this.handleVote(question, optionKey, authedUser)}>Vote!</button>
         )}
         {isAnswered && (
-          <div>{question[optionKey].votes.length} votes</div>
+          <div>
+            <div>{question[optionKey].votes.length} votes</div>
+            <div>{this.calculateVotePercentage(question, optionKey)}%</div>
+          </div>
         )}
       </div>
     )
